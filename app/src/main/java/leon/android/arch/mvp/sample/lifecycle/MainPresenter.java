@@ -5,15 +5,16 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import leon.android.arch.lifecycle.BaseLifecyclePresenter;
+import leon.android.arch.lifecycle.rxjava2.RxLifecyclePresenter;
 
 /**
  * Created by roothost on 2018/2/27.
  */
 
-public class MainPresenter extends BaseLifecyclePresenter {
+public class MainPresenter extends RxLifecyclePresenter {
     @Override
     public void onAny(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
+        super.onAny(owner, event);
         Log.d("Test", "owner=" + owner + ", event=" + event);
     }
 }
