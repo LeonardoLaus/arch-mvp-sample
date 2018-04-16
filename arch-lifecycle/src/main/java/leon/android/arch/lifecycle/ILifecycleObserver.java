@@ -47,5 +47,5 @@ public interface ILifecycleObserver extends LifecycleObserver {
      * will be called when lifecycle changed.
      */
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
-    void onAny(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event);
+    void onAnyLifecycle(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event);
 }

@@ -15,7 +15,7 @@ public class RxLifecyclePresenter extends BaseLifecyclePresenter implements IRxL
 
     @CallSuper
     @Override
-    public void onAny(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
+    public void onAnyLifecycle(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
         mLifecycleSubject.onNext(event);
     }
 

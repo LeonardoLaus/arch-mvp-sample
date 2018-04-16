@@ -13,8 +13,8 @@ import leon.android.arch.lifecycle.rxjava2.RxLifecyclePresenter;
 
 public class MainPresenter extends RxLifecyclePresenter {
     @Override
-    public void onAny(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
-        super.onAny(owner, event);
+    public void onAnyLifecycle(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
+        super.onAnyLifecycle(owner, event);
         Log.d("Test", "owner=" + owner + ", event=" + event);
     }
 }
