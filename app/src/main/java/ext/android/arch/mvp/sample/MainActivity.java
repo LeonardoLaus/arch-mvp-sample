@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import java.util.concurrent.TimeUnit;
+
 import ext.android.arch.lifecycle.rxjava2.RxLifecycleObserver;
 import ext.android.arch.mvp.sample.lifecycle.MainObserver;
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
@@ -18,9 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RxLifecycleObserver presenter = new MainObserver();
-        getLifecycle().addObserver(presenter);
-        presenter.lifecycle()
+        RxLifecycleObserver presenter = new MainObserver(getLifecycle());
+        Observable.interval(0, 1, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose(presenter.bindUntilEvent(Lifecycle.Event.ON_DESTROY))

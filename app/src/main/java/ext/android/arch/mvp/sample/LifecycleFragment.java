@@ -19,8 +19,7 @@ public class LifecycleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LifecycleFragmentObserver presenter = new LifecycleFragmentObserver();
-        getLifecycle().addObserver(presenter);
+        LifecycleFragmentObserver presenter = new LifecycleFragmentObserver(getLifecycle());
         presenter.lifecycle()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -34,6 +33,10 @@ public class LifecycleFragment extends Fragment {
     }
 
     private static class LifecycleFragmentObserver extends RxLifecycleObserver {
+        public LifecycleFragmentObserver(@NonNull Lifecycle lifecycle) {
+            super(lifecycle);
+        }
+
         @Override
         public void onAnyLifecycle(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
             super.onAnyLifecycle(owner, event);

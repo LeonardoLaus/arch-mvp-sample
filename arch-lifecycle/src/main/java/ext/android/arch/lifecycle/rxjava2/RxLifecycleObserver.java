@@ -5,13 +5,17 @@ import android.arch.lifecycle.LifecycleOwner;
 import android.support.annotation.CallSuper;
 import android.support.annotation.NonNull;
 
+import ext.android.arch.lifecycle.BaseLifecycleObserver;
 import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
-import ext.android.arch.lifecycle.BaseLifecycleObserver;
 
 public class RxLifecycleObserver extends BaseLifecycleObserver implements IRxLifecycleBinding<Lifecycle.Event> {
 
     private final BehaviorSubject<Lifecycle.Event> mLifecycleSubject = BehaviorSubject.create();
+
+    public RxLifecycleObserver(@NonNull Lifecycle lifecycle) {
+        super(lifecycle);
+    }
 
     @CallSuper
     @Override

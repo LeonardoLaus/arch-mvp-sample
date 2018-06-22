@@ -19,8 +19,7 @@ public class LifecycleActivity extends AppCompatActivity implements View.OnClick
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lifecycle);
         findViewById(R.id.btn_fragment_add).setOnClickListener(this::onClick);
-        LifecycleObserver presenter = new LifecycleObserver();
-        getLifecycle().addObserver(presenter);
+        LifecycleObserver presenter = new LifecycleObserver(getLifecycle());
         presenter.lifecycle()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,6 +39,10 @@ public class LifecycleActivity extends AppCompatActivity implements View.OnClick
     }
 
     private static class LifecycleObserver extends RxLifecycleObserver {
+        public LifecycleObserver(@NonNull Lifecycle lifecycle) {
+            super(lifecycle);
+        }
+
         @Override
         public void onAnyLifecycle(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
             super.onAnyLifecycle(owner, event);

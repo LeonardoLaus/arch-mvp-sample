@@ -1,10 +1,18 @@
 package ext.android.arch.lifecycle;
 
-/**
- * Created by roothost on 2018/2/27.
- */
+import android.arch.lifecycle.Lifecycle;
+import android.support.annotation.CallSuper;
+import android.support.annotation.NonNull;
 
 public abstract class BaseLifecycleObserver implements ILifecycleObserver {
+
+    private Lifecycle mLifecycle;
+
+    public BaseLifecycleObserver(@NonNull Lifecycle lifecycle) {
+        checkNotNull(lifecycle, "lifecycle == null");
+        this.mLifecycle = lifecycle;
+        this.mLifecycle.addObserver(this);
+    }
 
     @Override
     public void onCreate() {
@@ -31,8 +39,17 @@ public abstract class BaseLifecycleObserver implements ILifecycleObserver {
 
     }
 
+    @CallSuper
     @Override
     public void onDestroy() {
+        this.mLifecycle.removeObserver(this);
+    }
 
+    public static @NonNull
+    <T> T checkNotNull(final T reference, final Object errorMessage) {
+        if (reference == null) {
+            throw new NullPointerException(String.valueOf(errorMessage));
+        }
+        return reference;
     }
 }

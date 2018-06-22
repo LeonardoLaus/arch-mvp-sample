@@ -7,11 +7,11 @@ import android.util.Log;
 
 import ext.android.arch.lifecycle.rxjava2.RxLifecycleObserver;
 
-/**
- * Created by roothost on 2018/2/27.
- */
-
 public class MainObserver extends RxLifecycleObserver {
+    public MainObserver(@NonNull Lifecycle lifecycle) {
+        super(lifecycle);
+    }
+
     @Override
     public void onAnyLifecycle(@NonNull LifecycleOwner owner, @NonNull Lifecycle.Event event) {
         super.onAnyLifecycle(owner, event);
