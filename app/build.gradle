@@ -37,4 +37,8 @@ dependencies {
     implementation project(':dagger2')
     implementation 'com.google.dagger:dagger:2.16'
     annotationProcessor "com.google.dagger:dagger-compiler:2.16"
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
 }

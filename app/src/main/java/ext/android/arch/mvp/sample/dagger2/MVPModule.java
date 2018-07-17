@@ -4,8 +4,8 @@ import android.arch.lifecycle.Lifecycle;
 
 import dagger.Module;
 import dagger.Provides;
-import ext.android.arch.mvp.BasePresenter;
-import ext.android.arch.mvp.sample.mvp.MainPresenter;
+import ext.android.arch.mvp.sample.network.Network;
+import ext.android.arch.mvp.sample.network.api.NetworkApi;
 
 @Module
 public class MVPModule {
@@ -20,8 +20,13 @@ public class MVPModule {
         return this.lifecycle;
     }
 
+//    @Provides
+//    MainPresenter providersPresenter(Lifecycle lifecycle) {
+//        return new MainPresenter(lifecycle);
+//    }
+
     @Provides
-    MainPresenter providersPresenter(Lifecycle lifecycle) {
-        return new MainPresenter(lifecycle);
+    NetworkApi providersNetworkApi() {
+        return Network.get().getService(NetworkApi.class);
     }
 }
